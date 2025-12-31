@@ -1,0 +1,58 @@
+Language: Cpp
+Standard: c++20
+BasedOnStyle: Google
+UseTab: Never
+IndentWidth: 4
+AccessModifierOffset: -4
+AlignOperands: AlignAfterOperator
+BinPackArguments: false
+BinPackParameters: false
+AllowAllArgumentsOnNextLine: false
+AlignAfterOpenBracket: BlockIndent
+AlwaysBreakAfterReturnType: None
+ColumnLimit: 100
+DerivePointerAlignment: false
+KeepEmptyLinesAtTheStartOfBlocks: false
+AllowAllParametersOfDeclarationOnNextLine: false
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+ExperimentalAutoDetectBinPacking: false
+ShortNamespaceLines: 16
+IntegerLiteralSeparator:
+  Binary: 4
+  Decimal: 3
+  Hex: 4
+BreakBeforeBraces: Custom
+BraceWrapping:
+#  AfterCaseLabel: false
+  AfterClass: true
+#  AfterControlStatement: false
+  AfterEnum: true
+  AfterFunction: false
+  AfterNamespace: true
+  AfterStruct: true
+  AfterUnion: true
+#  AfterExternBlock: false
+#  BeforeCatch: false
+#  BeforeElse: false
+#  BeforeLambdaBody: false
+#  BeforeWhile: false
+#  SplitEmptyFunction: false
+#  SplitEmptyRecord: false
+#  SplitEmptyNamespace: false
+BreakConstructorInitializers: BeforeComma
+ConstructorInitializerIndentWidth: 0
+IncludeBlocks: Regroup
+IncludeCategories:
+  - Regex: '^<gst/.*>'
+    Priority: 1 # gstreamer headers
+  - Regex: '^<libremidi/.*>'
+    Priority: 2 # libremidi headers
+  - Regex: '^<doctest/.*>'
+    Priority: 3 # doctest headers
+  - Regex: '^<.*>'
+    Priority: 4 # System headers
+  - Regex: '^<[a-z_]+>' # STL headers
+    Priority: 5 # Lower priority to place them last
+  - Regex: '.*'
+    Priority: 0 # Project headers (default)
+SortIncludes: true
