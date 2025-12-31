@@ -1,0 +1,55 @@
+{
+	"name": "intrinsynth",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			"USERNAME": "${localEnv:USER}"
+		}
+	},
+	"privileged": true,
+	"workspaceMount": "source=${localWorkspaceFolder},target=/opt/intrinsynth,type=bind,consistency=cached",
+	"workspaceFolder": "/opt/intrinsynth",
+	"runArgs": [
+		"--net=host",
+		"-v",
+		"/dev:/dev",
+		"-v",
+		"${localEnv:HOME}/.gitconfig:/home/${localEnv:USER}/.gitconfig",
+		"-v",
+		"${localEnv:HOME}/.ssh:/home/${localEnv:USER}/.ssh",
+		"-v",
+		"/tmp/.X11-unix:/tmp/.X11-unix",
+		"--name",
+		"intrinsynth",
+		"--group-add=audio"
+	],
+	"containerEnv": {
+		"DISPLAY": "${localEnv:DISPLAY}",
+		"PULSE_SERVER": "unix:${localEnv:XDG_RUNTIME_DIR}/pulse/native"
+		// "NVIDIA_DRIVER_CAPABILITIES": "all"
+	},
+	"remoteUser": "${localEnv:USER}",
+	"mounts": [
+		{
+			"source": "${localEnv:XDG_RUNTIME_DIR}/pipewire-0",
+			"target": "${localEnv:XDG_RUNTIME_DIR}/pipewire-0",
+			"type": "bind"
+		},
+		{
+			"source": "${localEnv:XDG_RUNTIME_DIR}/pulse/native",
+			"target": "${localEnv:XDG_RUNTIME_DIR}/pulse/native",
+			"type": "bind"
+		}
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cpptools-extension-pack",
+				"mhutchie.git-graph",
+				"hediet.vscode-drawio",
+				"streetsidesoftware.code-spell-checker",
+				"ms-python.python"
+			]
+		}
+	}
+}
